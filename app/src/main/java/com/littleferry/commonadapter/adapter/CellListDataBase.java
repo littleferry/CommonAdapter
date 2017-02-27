@@ -1,12 +1,15 @@
 package com.littleferry.commonadapter.adapter;
 
+import android.view.View;
+import android.view.ViewGroup;
+
 import java.util.ArrayList;
 
 /**
  * Created by Administrator on 2017/2/27.
  */
 
-public class BaseCellListData {
+public abstract class CellListDataBase {
     // 通用ListViewAdapter的Type枚举值，可自由扩展
     public enum LayoutType {
         EType_None,
@@ -21,5 +24,7 @@ public class BaseCellListData {
     public LayoutType mType = LayoutType.EType_None;
 
     // 数据数组，二维数组
-    public ArrayList<BaseCellData> mList = new ArrayList<>();
+    public ArrayList<CellDataBase> mList = new ArrayList<>();
+
+    public abstract CellGroupBase getCellGroup(ViewGroup parent, View convertView);
 }

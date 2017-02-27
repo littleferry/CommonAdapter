@@ -8,12 +8,12 @@ import android.view.View;
  */
 
 public abstract class GroupBase {
-    protected BaseCellData data;
+    protected CellDataBase data;
     protected View view;
 
-    abstract public void setData(BaseCellData bean);
+    abstract public void setData(CellDataBase bean);
 
-    public BaseCellData getData() {
+    public CellDataBase getData() {
         return data;
     }
 

@@ -9,19 +9,14 @@ import android.view.View;
 
 public abstract class CellGroupBase {
     protected View view;
-    protected BaseCellListData data;
+    protected CellListDataBase data;
 
-    abstract public void setData(BaseCellListData bean);
+    abstract public void setData(CellListDataBase bean);
 
-    public BaseCellListData getData() {
+    public CellListDataBase getData() {
         return data;
     }
-
     public View getView() {
         return view;
-    }
-
-    public void setView(View view) {
-        this.view = view;
     }
 }

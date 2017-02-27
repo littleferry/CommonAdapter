@@ -12,9 +12,9 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 
 import com.blankj.utilcode.utils.Utils;
-import com.littleferry.commonadapter.adapter.BaseCellListData;
-import com.littleferry.commonadapter.adapter.CellListNx1;
-import com.littleferry.commonadapter.adapter.CellNx1;
+import com.littleferry.commonadapter.adapter.CellListDataBase;
+import com.littleferry.commonadapter.adapter.CellListDataNx1;
+import com.littleferry.commonadapter.adapter.CellDataNx1;
 import com.littleferry.commonadapter.adapter.CommonAdapter;
 
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ListView mListView;
     private CommonAdapter mAdapter;
-    private ArrayList<BaseCellListData> mList;
+    private ArrayList<CellListDataBase> mList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,26 +53,26 @@ public class MainActivity extends AppCompatActivity {
 
         // 测试代码数据开始
         for (int i = 0; i < 100; i++) {
-            BaseCellListData.LayoutType type = BaseCellListData.LayoutType.EType1x1;
-            int t = i% BaseCellListData.LayoutType.ETypeCount.ordinal() + 1;
-            if (t == BaseCellListData.LayoutType.EType2x1.ordinal()) {
-                type = BaseCellListData.LayoutType.EType2x1;
-            } else if (t == BaseCellListData.LayoutType.EType3x1.ordinal()) {
-                type = BaseCellListData.LayoutType.EType3x1;
-            } else if (t == BaseCellListData.LayoutType.EType4x1.ordinal()) {
-                type = BaseCellListData.LayoutType.EType4x1;
-            } else if (t == BaseCellListData.LayoutType.EType5x1.ordinal()) {
-                type = BaseCellListData.LayoutType.EType5x1;
+            CellListDataBase.LayoutType type = CellListDataBase.LayoutType.EType1x1;
+            int t = i% CellListDataBase.LayoutType.ETypeCount.ordinal() + 1;
+            if (t == CellListDataBase.LayoutType.EType2x1.ordinal()) {
+                type = CellListDataBase.LayoutType.EType2x1;
+            } else if (t == CellListDataBase.LayoutType.EType3x1.ordinal()) {
+                type = CellListDataBase.LayoutType.EType3x1;
+            } else if (t == CellListDataBase.LayoutType.EType4x1.ordinal()) {
+                type = CellListDataBase.LayoutType.EType4x1;
+            } else if (t == CellListDataBase.LayoutType.EType5x1.ordinal()) {
+                type = CellListDataBase.LayoutType.EType5x1;
             }
-            CellListNx1 data = new CellListNx1(type);
+            CellListDataNx1 data = new CellListDataNx1(type);
             mList.add(data);
             for (int j = 0; j < type.ordinal(); j++) {
-                data.mList.add(new CellNx1(type));
+                data.mList.add(new CellDataNx1(type));
             }
         }
         //测试代码数据结束
 
-        mAdapter.setList(mList);
+        mAdapter.resetList(mList);
     }
 
     @Override

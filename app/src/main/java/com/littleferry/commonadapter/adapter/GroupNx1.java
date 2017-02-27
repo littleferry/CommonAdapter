@@ -36,7 +36,7 @@ public class GroupNx1 extends GroupBase implements View.OnClickListener {
     }
 
     @Override
-    public void setData(BaseCellData d) {
+    public void setData(CellDataBase d) {
         data = d;
         if (d != null) {
             mTextView.setText("类型：\n" + d.type);

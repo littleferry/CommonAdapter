@@ -1,6 +1,5 @@
 package com.littleferry.commonadapter.adapter;
 
-import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -18,13 +17,13 @@ public class CellGroupNx1 extends CellGroupBase {
     private int mCount = COUNT;
     private ArrayList<GroupNx1> mGroupList = new ArrayList<>();
 
-    public CellGroupNx1(Context context, ViewGroup parent, int count) {
-        initView(context, parent, count);
+    public CellGroupNx1(ViewGroup parent, int count) {
+        initView(parent, count);
     }
 
-    protected void initView(Context context, ViewGroup parent, int count) {
+    protected void initView(ViewGroup parent, int count) {
         mCount = count;
-        view = new LinearLayout(context);
+        view = new LinearLayout(parent.getContext());
         int sw = ScreenUtils.getScreenWidth();
         int w = sw / mCount;
         int h = w;
@@ -38,7 +37,7 @@ public class CellGroupNx1 extends CellGroupBase {
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(w, h);
 
         for (int i = 0; i < mCount; i++) {
-            GroupNx1 group = new GroupNx1(context, parent);
+            GroupNx1 group = new GroupNx1(parent.getContext(), parent);
             mGroupList.add(group);
             ll.addView(group.getView());
             group.getView().setLayoutParams(lp);
@@ -46,7 +45,7 @@ public class CellGroupNx1 extends CellGroupBase {
     }
 
     @Override
-    public void setData(BaseCellListData d) {
+    public void setData(CellListDataBase d) {
         data = d;
         if (data != null && data.mList.size() > 0) {
             for (int i = 0; i < mCount; i++) {
