@@ -4,6 +4,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import com.littleferry.commonadapter.adapter.celllistdata.CellListDataBase;
+
 import java.util.ArrayList;
 
 /**
