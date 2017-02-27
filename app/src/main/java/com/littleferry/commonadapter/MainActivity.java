@@ -5,15 +5,30 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
+
+import com.blankj.utilcode.utils.Utils;
+import com.littleferry.commonadapter.adapter.BaseCellListData;
+import com.littleferry.commonadapter.adapter.CellListNx1;
+import com.littleferry.commonadapter.adapter.CellNx1;
+import com.littleferry.commonadapter.adapter.CommonAdapter;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+    private ListView mListView;
+    private CommonAdapter mAdapter;
+    private ArrayList<BaseCellListData> mList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Utils.init(this);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -26,6 +41,38 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        mListView = new ListView(this);
+        RelativeLayout content_main = (RelativeLayout) findViewById(R.id.content_main);
+        content_main.addView(mListView);
+        mListView.setDividerHeight(0);
+
+        mAdapter = new CommonAdapter();
+        mListView.setAdapter(mAdapter);
+        mList = new ArrayList<>();
+
+        // 测试代码数据开始
+        for (int i = 0; i < 100; i++) {
+            BaseCellListData.LayoutType type = BaseCellListData.LayoutType.EType1x1;
+            int t = i% BaseCellListData.LayoutType.ETypeCount.ordinal() + 1;
+            if (t == BaseCellListData.LayoutType.EType2x1.ordinal()) {
+                type = BaseCellListData.LayoutType.EType2x1;
+            } else if (t == BaseCellListData.LayoutType.EType3x1.ordinal()) {
+                type = BaseCellListData.LayoutType.EType3x1;
+            } else if (t == BaseCellListData.LayoutType.EType4x1.ordinal()) {
+                type = BaseCellListData.LayoutType.EType4x1;
+            } else if (t == BaseCellListData.LayoutType.EType5x1.ordinal()) {
+                type = BaseCellListData.LayoutType.EType5x1;
+            }
+            CellListNx1 data = new CellListNx1(type);
+            mList.add(data);
+            for (int j = 0; j < type.ordinal(); j++) {
+                data.mList.add(new CellNx1(type));
+            }
+        }
+        //测试代码数据结束
+
+        mAdapter.setList(mList);
     }
 
     @Override
