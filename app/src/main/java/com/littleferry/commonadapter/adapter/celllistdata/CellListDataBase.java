@@ -21,6 +21,7 @@ public abstract class CellListDataBase {
         EType3x1, // 3x1风格
         EType4x1, // 4x1风格
         EType5x1, // 5x1风格
+        ETypeTitle, // Title风格
         ETypeCount // 通用布局的总数
     }
 

@@ -7,8 +7,6 @@ import android.widget.TextView;
 
 import com.littleferry.commonadapter.adapter.celldata.CellDataBase;
 
-import java.util.Random;
-
 /**
  * Created by luozefeng on 2016/11/15.
  */
@@ -26,9 +24,6 @@ public class CellGroupNx1 extends CellGroupBase implements View.OnClickListener 
 
     protected void initView(ViewGroup parent) {
         view = new LinearLayout(parent.getContext());
-        Random myRandom = new Random();
-        int color = 0xff000000 | myRandom.nextInt(0x00ffffff);
-        view.setBackgroundColor(color);
         view.setOnClickListener(this);
 
         LinearLayout ll = (LinearLayout) view;
@@ -42,7 +37,10 @@ public class CellGroupNx1 extends CellGroupBase implements View.OnClickListener 
     public void setData(CellDataBase d) {
         data = d;
         if (d != null) {
-            mTextView.setText("类型：" + d.type + " \n编号：" + d.getIndex());
+            view.setBackgroundColor(d.getRandomColor());
+            mTextView.setTextColor(d.getRandomColor());
+            mTextView.setText("类型：" + d.type + " \n第" +
+                    (d.mIndexY + 1) + "行第" + d.mIndexX + "列");
         } else {
             view.setVisibility(View.GONE);
         }

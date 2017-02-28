@@ -6,12 +6,16 @@ import android.view.ViewGroup;
 import com.littleferry.commonadapter.adapter.cellgroup.CellGroupBase;
 import com.littleferry.commonadapter.adapter.celllistdata.CellListDataBase;
 
+import java.util.Random;
+
 /**
  * Created by Administrator on 2017/2/27.
  */
 
 public abstract class CellDataBase {
-    protected int mIndex;
+    public int mIndexX;
+    public int mIndexY;
+
     public CellListDataBase.LayoutType type;
     protected View.OnClickListener mOnClick;
 
@@ -21,13 +25,11 @@ public abstract class CellDataBase {
         mOnClick = onClick;
     }
 
-    public int getIndex() {
-        return mIndex;
-    }
-
-    public void setIndex(int mIndex) {
-        this.mIndex = mIndex;
-    }
-
     public abstract void onClick(View v);
+
+    // 随机颜色，测试用
+    protected Random mRandom = new Random();
+    public int getRandomColor() {
+        return 0xff000000 | mRandom.nextInt(0x00ffffff);
+    }
 }

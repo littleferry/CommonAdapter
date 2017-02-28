@@ -12,12 +12,15 @@ import com.littleferry.commonadapter.adapter.celllistdata.CellListDataBase;
  * Created by Administrator on 2017/2/27.
  */
 
-public class CellDataNx1 extends CellDataBase {
-    protected CellDataNx1() {
+public class CellDataTitle extends CellDataBase {
+    private String title;
+    private String subTitle;
+
+    protected CellDataTitle() {
 
     }
 
-    public CellDataNx1(CellListDataBase.LayoutType type) {
+    public CellDataTitle(CellListDataBase.LayoutType type) {
         this.type = type;
     }
 
@@ -33,5 +36,21 @@ public class CellDataNx1 extends CellDataBase {
         } else {
             ToastUtils.showLongToast(type + " 第" + mIndexY + "行 第" + mIndexX + "列被点击");
         }
+    }
+
+    public String getSubTitle() {
+        return subTitle;
+    }
+
+    public void setSubTitle(String subTitle) {
+        this.subTitle = subTitle;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }
