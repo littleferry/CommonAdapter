@@ -3,14 +3,23 @@ package com.littleferry.commonadapter;
 import android.view.ViewGroup;
 
 import com.blankj.utilcode.utils.ScreenUtils;
-import com.littleferry.commonadapter.adapter.celldata.CellDataNx1;
+import com.littleferry.commonadapter.adapter.celldata.CellData1x1;
+import com.littleferry.commonadapter.adapter.celldata.CellData2x1;
+import com.littleferry.commonadapter.adapter.celldata.CellData3x1;
+import com.littleferry.commonadapter.adapter.celldata.CellData4x1;
+import com.littleferry.commonadapter.adapter.celldata.CellData5x1;
+import com.littleferry.commonadapter.adapter.celldata.CellDataBanner;
 import com.littleferry.commonadapter.adapter.celldata.CellDataTitle;
+import com.littleferry.commonadapter.adapter.celllistdata.CellListData1x1;
+import com.littleferry.commonadapter.adapter.celllistdata.CellListData2x1;
+import com.littleferry.commonadapter.adapter.celllistdata.CellListData3x1;
+import com.littleferry.commonadapter.adapter.celllistdata.CellListData4x1;
+import com.littleferry.commonadapter.adapter.celllistdata.CellListData5x1;
+import com.littleferry.commonadapter.adapter.celllistdata.CellListDataBanner;
 import com.littleferry.commonadapter.adapter.celllistdata.CellListDataBase;
-import com.littleferry.commonadapter.adapter.celllistdata.CellListDataNx1;
 import com.littleferry.commonadapter.adapter.celllistdata.CellListDataTitle;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * Created by Administrator on 2017/3/1.
@@ -19,57 +28,94 @@ import java.util.Random;
 public class DataProvide {
     public static ArrayList<CellListDataBase> getList() {
         ArrayList<CellListDataBase> list = new ArrayList<>();
-        Random random = new Random();
 
-        int index = 0;
-        for (int i = CellListDataBase.LayoutType.ETypeTitle.ordinal() - 1; i < 100; i++) {
+        int sw = ScreenUtils.getScreenWidth();
+        int count = CellListDataBase.LayoutType.ETypeCount.ordinal();
+        for (int i = 0; i < 10 * count; i++) {
             CellListDataBase.LayoutType type;
             CellListDataBase cldb;
-            int t = (random.nextInt(0x00ffffff) % CellListDataBase.LayoutType.ETypeCount.ordinal());
+            int t = (i % (count - 1)) + 1;
             if (t == CellListDataBase.LayoutType.ETypeTitle.ordinal()) {
-                index++;
                 type = CellListDataBase.LayoutType.ETypeTitle;
                 cldb = new CellListDataTitle();
                 list.add(cldb);
-                CellDataTitle cdt = new CellDataTitle(type);
-                cdt.mIndexY = index;
-                cdt.mIndexX = 0;
-                cdt.width = ViewGroup.LayoutParams.MATCH_PARENT;
-                cdt.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-                cdt.setTitle("我是标题 " + index);
-                cdt.setSubTitle("我是副标题 " + index);
-                cdt.setText("WxH: " + cdt.width + "x" + cdt.height);
-                cldb.mList.add(cdt);
-            } else if (t >= CellListDataBase.LayoutType.EType1x1.ordinal() && t <= CellListDataBase.LayoutType.EType5x1.ordinal()) {
-                if (t == CellListDataBase.LayoutType.EType1x1.ordinal()) {
-                    type = CellListDataBase.LayoutType.EType1x1;
-                } else if (t == CellListDataBase.LayoutType.EType2x1.ordinal()) {
-                    type = CellListDataBase.LayoutType.EType2x1;
-                } else if (t == CellListDataBase.LayoutType.EType3x1.ordinal()) {
-                    type = CellListDataBase.LayoutType.EType3x1;
-                } else if (t == CellListDataBase.LayoutType.EType4x1.ordinal()) {
-                    type = CellListDataBase.LayoutType.EType4x1;
-                } else if (t == CellListDataBase.LayoutType.EType5x1.ordinal()) {
-                    type = CellListDataBase.LayoutType.EType5x1;
-                } else {
-                    continue;
-                }
-                cldb = new CellListDataNx1(type);
+                CellDataTitle d = new CellDataTitle(type);
+                d.mIndexY = i;
+                d.mIndexX = 0;
+                d.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                d.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+                d.setTitle("Title");
+                d.setSubTitle("SubTitle");
+                cldb.mList.add(d);
+            } else if (t == CellListDataBase.LayoutType.ETypeBanner.ordinal()) {
+                type = CellListDataBase.LayoutType.ETypeBanner;
+                cldb = new CellListDataBanner();
+                list.add(cldb);
+                CellDataBanner d = new CellDataBanner(type);
+                d.mIndexY = i;
+                d.mIndexX = 0;
+                d.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                d.height = sw / 2;
+                cldb.mList.add(d);
+            } else if (t == CellListDataBase.LayoutType.EType1x1.ordinal()) {
+                type = CellListDataBase.LayoutType.EType1x1;
+                cldb = new CellListData1x1();
                 list.add(cldb);
                 for (int j = 0; j < type.ordinal(); j++) {
-                    CellDataNx1 cd = new CellDataNx1(type);
-                    cd.mIndexY = i - CellListDataBase.LayoutType.ETypeTitle.ordinal() + 1;
-                    cd.mIndexX = j;
-                    cd.width = ScreenUtils.getScreenWidth() / type.ordinal();
-                    cd.height = cd.width * (j + 1);
-                    if (type == CellListDataBase.LayoutType.EType1x1) {
-                        cd.height = cd.width / 2;
-                    }
-
-                    cd.setText("类型：" + cd.type + " \n第" +
-                            (cd.mIndexY + 1) + "行第" + cd.mIndexX + "列" +
-                            "\nWxH: " + cd.width + "x" + cd.height);
-                    cldb.mList.add(cd);
+                    CellData1x1 d = new CellData1x1(type);
+                    d.mIndexY = i;
+                    d.mIndexX = j;
+                    d.width = sw / type.ordinal();
+                    d.height = d.width / 2;
+                    cldb.mList.add(d);
+                }
+            } else if (t == CellListDataBase.LayoutType.EType2x1.ordinal()) {
+                type = CellListDataBase.LayoutType.EType2x1;
+                cldb = new CellListData2x1();
+                list.add(cldb);
+                for (int j = 0; j < type.ordinal(); j++) {
+                    CellData2x1 d = new CellData2x1(type);
+                    d.mIndexY = i;
+                    d.mIndexX = j;
+                    d.width = sw / type.ordinal();
+                    d.height = d.width * (j + 1);
+                    cldb.mList.add(d);
+                }
+            } else if (t == CellListDataBase.LayoutType.EType3x1.ordinal()) {
+                type = CellListDataBase.LayoutType.EType3x1;
+                cldb = new CellListData3x1();
+                list.add(cldb);
+                for (int j = 0; j < type.ordinal(); j++) {
+                    CellData3x1 d = new CellData3x1(type);
+                    d.mIndexY = i;
+                    d.mIndexX = j;
+                    d.width = sw / type.ordinal();
+                    d.height = d.width * (j + 1);
+                    cldb.mList.add(d);
+                }
+            } else if (t == CellListDataBase.LayoutType.EType4x1.ordinal()) {
+                type = CellListDataBase.LayoutType.EType4x1;
+                cldb = new CellListData4x1();
+                list.add(cldb);
+                for (int j = 0; j < type.ordinal(); j++) {
+                    CellData4x1 d = new CellData4x1(type);
+                    d.mIndexY = i;
+                    d.mIndexX = j;
+                    d.width = sw / type.ordinal();
+                    d.height = d.width * (j + 1);
+                    cldb.mList.add(d);
+                }
+            } else if (t == CellListDataBase.LayoutType.EType5x1.ordinal()) {
+                type = CellListDataBase.LayoutType.EType5x1;
+                cldb = new CellListData5x1();
+                list.add(cldb);
+                for (int j = 0; j < type.ordinal(); j++) {
+                    CellData5x1 d = new CellData5x1(type);
+                    d.mIndexY = i;
+                    d.mIndexX = j;
+                    d.width = sw / type.ordinal();
+                    d.height = d.width * (j + 1);
+                    cldb.mList.add(d);
                 }
             }
         }

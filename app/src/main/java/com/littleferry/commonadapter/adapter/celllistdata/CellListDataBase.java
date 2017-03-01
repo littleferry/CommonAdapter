@@ -15,17 +15,18 @@ import java.util.ArrayList;
 public abstract class CellListDataBase {
     // 通用ListViewAdapter的Type枚举值，可自由扩展
     public enum LayoutType {
-        EType_None,
+        ETypeNone,
         EType1x1, // 1x1风格
         EType2x1, // 2x1风格
         EType3x1, // 3x1风格
         EType4x1, // 4x1风格
         EType5x1, // 5x1风格
         ETypeTitle, // Title风格
+        ETypeBanner, // Banner风格
         ETypeCount // 通用布局的总数
     }
 
-    public LayoutType mType = LayoutType.EType_None;
+    public LayoutType mType = LayoutType.ETypeNone;
 
     // 数据数组，二维数组
     public ArrayList<CellDataBase> mList = new ArrayList<>();

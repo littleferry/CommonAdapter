@@ -1,5 +1,6 @@
 package com.littleferry.commonadapter.adapter.cellgroup;
 
+import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -8,23 +9,17 @@ import android.widget.TextView;
 import com.littleferry.commonadapter.adapter.celldata.CellDataBase;
 import com.littleferry.commonadapter.adapter.celldata.CellDataTitle;
 
-import java.util.Random;
-
 /**
  * Created by luozefeng on 2016/11/15.
  */
 
-public class CellGroupTitle extends CellGroupBase implements View.OnClickListener {
+public class CellGroupTitle extends CellGroup1x1 implements View.OnClickListener {
     private TextView mTitleTv;
     private TextView mSubTitleTv;
     private TextView mTextTv;
 
     public CellGroupTitle(ViewGroup parent) {
-        init(parent);
-    }
-
-    private void init(ViewGroup parent) {
-        initView(parent);
+        super(parent);
     }
 
     protected void initView(ViewGroup parent) {
@@ -54,14 +49,14 @@ public class CellGroupTitle extends CellGroupBase implements View.OnClickListene
     public void setData(CellDataBase d) {
         data = d;
         if (d != null && d instanceof CellDataTitle) {
-            view.setBackgroundColor(d.getRandomColor());
-            mTitleTv.setTextColor(d.getRandomColor());
-            mSubTitleTv.setTextColor(d.getRandomColor());
-            mTextTv.setTextColor(d.getRandomColor());
+            view.setBackgroundColor(Color.LTGRAY);
+            mTitleTv.setTextColor(Color.WHITE);
+            mSubTitleTv.setTextColor(Color.WHITE);
+            mTextTv.setTextColor(Color.WHITE);
             CellDataTitle cdt = (CellDataTitle) d;
             mTitleTv.setText(cdt.getTitle());
             mSubTitleTv.setText(cdt.getSubTitle());
-            mTextTv.setText(cdt.getText());
+            mTextTv.setText(cdt.getInfo());
         } else {
             view.setVisibility(View.GONE);
         }

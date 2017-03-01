@@ -1,7 +1,9 @@
 package com.littleferry.commonadapter.adapter.cellgroup;
 
+import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -11,11 +13,12 @@ import com.littleferry.commonadapter.adapter.celldata.CellDataBase;
  * Created by luozefeng on 2016/11/15.
  */
 
-public class CellGroupNx1 extends CellGroupBase implements View.OnClickListener {
-    private TextView mTextView;
+public class CellGroupBanner extends CellGroup1x1 implements View.OnClickListener {
+    private ImageView mImageView;
+    private TextView mTextTv;
 
-    public CellGroupNx1(ViewGroup parent) {
-        initView(parent);
+    public CellGroupBanner(ViewGroup parent) {
+        super(parent);
     }
 
     protected void initView(ViewGroup parent) {
@@ -23,8 +26,10 @@ public class CellGroupNx1 extends CellGroupBase implements View.OnClickListener 
         view.setOnClickListener(this);
 
         LinearLayout ll = (LinearLayout) view;
-        mTextView = new TextView(parent.getContext());
-        ll.addView(mTextView);
+        mTextTv = new TextView(parent.getContext());
+        mImageView = new ImageView(parent.getContext());
+        ll.addView(mTextTv);
+        ll.addView(mImageView);
 
         view.setOnClickListener(this);
     }
@@ -34,8 +39,8 @@ public class CellGroupNx1 extends CellGroupBase implements View.OnClickListener 
         data = d;
         if (d != null) {
             view.setBackgroundColor(d.getRandomColor());
-            mTextView.setTextColor(d.getRandomColor());
-            mTextView.setText(d.getInfo());
+            mTextTv.setTextColor(Color.WHITE);
+            mTextTv.setText(d.getInfo());
         } else {
             view.setVisibility(View.GONE);
         }

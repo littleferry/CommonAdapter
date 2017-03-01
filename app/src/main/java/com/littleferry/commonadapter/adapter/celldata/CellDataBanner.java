@@ -4,6 +4,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.blankj.utilcode.utils.ToastUtils;
+import com.littleferry.commonadapter.adapter.cellgroup.CellGroupBanner;
 import com.littleferry.commonadapter.adapter.cellgroup.CellGroupBase;
 import com.littleferry.commonadapter.adapter.cellgroup.CellGroupNx1;
 import com.littleferry.commonadapter.adapter.celllistdata.CellListDataBase;
@@ -12,17 +13,14 @@ import com.littleferry.commonadapter.adapter.celllistdata.CellListDataBase;
  * Created by Administrator on 2017/2/27.
  */
 
-public class CellDataTitle extends CellData1x1 {
-    private String title;
-    private String subTitle;
-
-    public CellDataTitle(CellListDataBase.LayoutType type) {
+public class CellDataBanner extends CellData1x1 {
+    public CellDataBanner(CellListDataBase.LayoutType type) {
         super(type);
     }
 
     @Override
     public CellGroupBase newGroup(ViewGroup parent) {
-        return new CellGroupNx1(parent);
+        return new CellGroupBanner(parent);
     }
 
     @Override
@@ -30,23 +28,7 @@ public class CellDataTitle extends CellData1x1 {
         if (mOnClick != null) {
             mOnClick.onClick(v);
         } else {
-            ToastUtils.showLongToast(type + " 第" + mIndexY + "行 第" + mIndexX + "列被点击");
+            ToastUtils.showLongToast(type + " 第" + (mIndexY + 1) + "行 第" + mIndexX + "列被点击");
         }
-    }
-
-    public String getSubTitle() {
-        return subTitle;
-    }
-
-    public void setSubTitle(String subTitle) {
-        this.subTitle = subTitle;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 }

@@ -20,9 +20,6 @@ public abstract class CellDataBase {
     public int width = ViewGroup.LayoutParams.WRAP_CONTENT;
     public int height = ViewGroup.LayoutParams.WRAP_CONTENT;
 
-    //
-    private String text;
-
     public CellListDataBase.LayoutType type;
     protected View.OnClickListener mOnClick;
 
@@ -34,16 +31,14 @@ public abstract class CellDataBase {
 
     public abstract void onClick(View v);
 
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
+    public String getInfo() {
+        return "Type: " + type + " \nLine: " + (mIndexY + 1) + ",Col: " + (mIndexX + 1) + "" +
+                "\nWxH: " + width + "x" + height;
     }
 
     // 随机颜色，测试用
     protected Random mRandom = new Random();
+
     public int getRandomColor() {
         return 0xff000000 | mRandom.nextInt(0x00ffffff);
     }
