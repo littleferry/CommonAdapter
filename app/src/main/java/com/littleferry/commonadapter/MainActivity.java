@@ -18,7 +18,7 @@ import com.littleferry.commonadapter.adapter.celllistdata.CellListDataBase;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private ListView mListView;
     private CommonAdapter mAdapter;
