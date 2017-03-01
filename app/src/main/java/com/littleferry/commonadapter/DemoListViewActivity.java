@@ -2,6 +2,7 @@ package com.littleferry.commonadapter;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -14,11 +15,16 @@ import com.blankj.utilcode.utils.ActivityUtils;
 import com.blankj.utilcode.utils.ToastUtils;
 import com.blankj.utilcode.utils.Utils;
 import com.littleferry.commonadapter.adapter.CommonAdapter;
+import com.littleferry.commonadapter.adapter.celldata.CellDataNx1;
+import com.littleferry.commonadapter.adapter.celldata.CellDataTitle;
 import com.littleferry.commonadapter.adapter.celllistdata.CellListDataBase;
+import com.littleferry.commonadapter.adapter.celllistdata.CellListDataBase.LayoutType;
+import com.littleferry.commonadapter.adapter.celllistdata.CellListDataNx1;
+import com.littleferry.commonadapter.adapter.celllistdata.CellListDataTitle;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class DemoListViewActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ListView mListView;
     private CommonAdapter mAdapter;
@@ -36,9 +42,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ActivityUtils.launchActivity(MainActivity.this,
-                        getPackageName(),
-                        DemoListViewActivity.class.getName());
+                mList = DataProvide.getList();
+                mAdapter.resetList(mList);
             }
         });
 

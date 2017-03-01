@@ -31,7 +31,7 @@ public class CellDataNx1 extends CellDataBase {
         if (mOnClick != null) {
             mOnClick.onClick(v);
         } else {
-            ToastUtils.showLongToast(type + " 第" + mIndexY + "行 第" + mIndexX + "列被点击");
+            ToastUtils.showLongToast(type + " 第" + (mIndexY + 1) + "行 第" + mIndexX + "列被点击");
         }
     }
 }
