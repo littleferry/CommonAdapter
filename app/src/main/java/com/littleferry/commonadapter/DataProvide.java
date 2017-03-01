@@ -20,6 +20,7 @@ import com.littleferry.commonadapter.adapter.celllistdata.CellListDataBase;
 import com.littleferry.commonadapter.adapter.celllistdata.CellListDataTitle;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by Administrator on 2017/3/1.
@@ -28,13 +29,14 @@ import java.util.ArrayList;
 public class DataProvide {
     public static ArrayList<CellListDataBase> getList() {
         ArrayList<CellListDataBase> list = new ArrayList<>();
+        Random random = new Random();
 
         int sw = ScreenUtils.getScreenWidth();
         int count = CellListDataBase.LayoutType.ETypeCount.ordinal();
-        for (int i = 0; i < 10 * count; i++) {
+        for (int i = 0; i < 100 * count; i++) {
             CellListDataBase.LayoutType type;
             CellListDataBase cldb;
-            int t = (i % (count - 1)) + 1;
+            int t = (i % (random.nextInt(count) + 1)) + 1;
             if (t == CellListDataBase.LayoutType.ETypeTitle.ordinal()) {
                 type = CellListDataBase.LayoutType.ETypeTitle;
                 cldb = new CellListDataTitle();
@@ -78,7 +80,7 @@ public class DataProvide {
                     d.mIndexY = i;
                     d.mIndexX = j;
                     d.width = sw / type.ordinal();
-                    d.height = d.width * (j + 1);
+                    d.height = d.width * (random.nextInt(type.ordinal()) + 1);
                     cldb.mList.add(d);
                 }
             } else if (t == CellListDataBase.LayoutType.EType3x1.ordinal()) {
@@ -90,7 +92,7 @@ public class DataProvide {
                     d.mIndexY = i;
                     d.mIndexX = j;
                     d.width = sw / type.ordinal();
-                    d.height = d.width * (j + 1);
+                    d.height = d.width * (random.nextInt(type.ordinal()) + 1);
                     cldb.mList.add(d);
                 }
             } else if (t == CellListDataBase.LayoutType.EType4x1.ordinal()) {
@@ -102,7 +104,7 @@ public class DataProvide {
                     d.mIndexY = i;
                     d.mIndexX = j;
                     d.width = sw / type.ordinal();
-                    d.height = d.width * (j + 1);
+                    d.height = d.width * (random.nextInt(type.ordinal()) + 1);
                     cldb.mList.add(d);
                 }
             } else if (t == CellListDataBase.LayoutType.EType5x1.ordinal()) {
@@ -114,7 +116,7 @@ public class DataProvide {
                     d.mIndexY = i;
                     d.mIndexX = j;
                     d.width = sw / type.ordinal();
-                    d.height = d.width * (j + 1);
+                    d.height = d.width * (random.nextInt(type.ordinal()) + 1);
                     cldb.mList.add(d);
                 }
             }
