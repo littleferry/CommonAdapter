@@ -17,6 +17,7 @@ import java.util.Random;
 public class CellGroupTitle extends CellGroupBase implements View.OnClickListener {
     private TextView mTitleTv;
     private TextView mSubTitleTv;
+    private TextView mTextTv;
 
     public CellGroupTitle(ViewGroup parent) {
         init(parent);
@@ -37,11 +38,14 @@ public class CellGroupTitle extends CellGroupBase implements View.OnClickListene
         ll.setOrientation(LinearLayout.VERTICAL);
         mTitleTv = new TextView(parent.getContext());
         mSubTitleTv = new TextView(parent.getContext());
+        mTextTv = new TextView(parent.getContext());
         ll.addView(mTitleTv, lp);
         ll.addView(mSubTitleTv, lp);
+        ll.addView(mTextTv, lp);
 
         mTitleTv.setTextSize(30);
         mSubTitleTv.setTextSize(20);
+        mTextTv.setTextSize(20);
 
         view.setOnClickListener(this);
     }
@@ -53,9 +57,11 @@ public class CellGroupTitle extends CellGroupBase implements View.OnClickListene
             view.setBackgroundColor(d.getRandomColor());
             mTitleTv.setTextColor(d.getRandomColor());
             mSubTitleTv.setTextColor(d.getRandomColor());
+            mTextTv.setTextColor(d.getRandomColor());
             CellDataTitle cdt = (CellDataTitle) d;
             mTitleTv.setText(cdt.getTitle());
             mSubTitleTv.setText(cdt.getSubTitle());
+            mTextTv.setText(cdt.getText());
         } else {
             view.setVisibility(View.GONE);
         }

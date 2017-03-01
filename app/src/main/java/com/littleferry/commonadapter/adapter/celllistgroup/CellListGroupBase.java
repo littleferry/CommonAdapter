@@ -34,6 +34,7 @@ public abstract class CellListGroupBase {
      */
     protected abstract int getXCount();
     protected abstract CellGroupBase newGroup(ViewGroup parent, CellDataBase cdb);
+    protected abstract void calculateLayout();
 
     public void setData(CellListDataBase d) {
         data = d;
@@ -48,5 +49,6 @@ public abstract class CellListGroupBase {
         } else {
             view.setVisibility(View.GONE);
         }
+        calculateLayout();
     }
 }

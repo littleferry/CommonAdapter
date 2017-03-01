@@ -39,8 +39,7 @@ public class CellGroupNx1 extends CellGroupBase implements View.OnClickListener 
         if (d != null) {
             view.setBackgroundColor(d.getRandomColor());
             mTextView.setTextColor(d.getRandomColor());
-            mTextView.setText("类型：" + d.type + " \n第" +
-                    (d.mIndexY + 1) + "行第" + d.mIndexX + "列");
+            mTextView.setText(d.getText());
         } else {
             view.setVisibility(View.GONE);
         }

@@ -16,6 +16,13 @@ public abstract class CellDataBase {
     public int mIndexX;
     public int mIndexY;
 
+    // 数据对象对应的View宽和高
+    public int width = ViewGroup.LayoutParams.WRAP_CONTENT;
+    public int height = ViewGroup.LayoutParams.WRAP_CONTENT;
+
+    //
+    private String text;
+
     public CellListDataBase.LayoutType type;
     protected View.OnClickListener mOnClick;
 
@@ -26,6 +33,14 @@ public abstract class CellDataBase {
     }
 
     public abstract void onClick(View v);
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
 
     // 随机颜色，测试用
     protected Random mRandom = new Random();

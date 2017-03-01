@@ -20,17 +20,7 @@ public class CellListGroupTitle extends CellListGroupBase {
 
     private void initView(ViewGroup parent) {
         view = new LinearLayout(parent.getContext());
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        // view.setLayoutParams(lp);
-
-        int sw = ScreenUtils.getScreenWidth();
-        int w = sw;
-        int h = w / 5;
-
         LinearLayout ll = (LinearLayout) view;
-        ll.setOrientation(LinearLayout.HORIZONTAL);
-        // lp = new LinearLayout.LayoutParams(w, h);
 
         CellDataBase cdb = null;
         if (getData() != null && 0 < getData().mList.size()) {
@@ -39,7 +29,6 @@ public class CellListGroupTitle extends CellListGroupBase {
         CellGroupBase group = newGroup(parent, cdb);
         mGroupList.add(group);
         ll.addView(group.getView());
-        group.getView().setLayoutParams(lp);
     }
 
     @Override
@@ -53,5 +42,14 @@ public class CellListGroupTitle extends CellListGroupBase {
             return cdb.newGroup(parent);
         }
         return new CellGroupTitle(parent);
+    }
+
+    @Override
+    protected void calculateLayout() {
+        if (getData() != null) {
+            CellDataBase cdb = getData().mList.get(0);
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(cdb.width, cdb.height);
+            mGroupList.get(0).getView().setLayoutParams(lp);
+        }
     }
 }

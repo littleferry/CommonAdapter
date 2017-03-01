@@ -1,5 +1,8 @@
 package com.littleferry.commonadapter;
 
+import android.view.ViewGroup;
+
+import com.blankj.utilcode.utils.ScreenUtils;
 import com.littleferry.commonadapter.adapter.celldata.CellDataNx1;
 import com.littleferry.commonadapter.adapter.celldata.CellDataTitle;
 import com.littleferry.commonadapter.adapter.celllistdata.CellListDataBase;
@@ -31,8 +34,11 @@ public class DataProvide {
                 CellDataTitle cdt = new CellDataTitle(type);
                 cdt.mIndexY = index;
                 cdt.mIndexX = 0;
+                cdt.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                cdt.height = ViewGroup.LayoutParams.WRAP_CONTENT;
                 cdt.setTitle("我是标题 " + index);
                 cdt.setSubTitle("我是副标题 " + index);
+                cdt.setText("WxH: " + cdt.width + "x" + cdt.height);
                 cldb.mList.add(cdt);
             } else if (t >= CellListDataBase.LayoutType.EType1x1.ordinal() && t <= CellListDataBase.LayoutType.EType5x1.ordinal()) {
                 if (t == CellListDataBase.LayoutType.EType1x1.ordinal()) {
@@ -54,6 +60,15 @@ public class DataProvide {
                     CellDataNx1 cd = new CellDataNx1(type);
                     cd.mIndexY = i - CellListDataBase.LayoutType.ETypeTitle.ordinal() + 1;
                     cd.mIndexX = j;
+                    cd.width = ScreenUtils.getScreenWidth() / type.ordinal();
+                    cd.height = cd.width * (j + 1);
+                    if (type == CellListDataBase.LayoutType.EType1x1) {
+                        cd.height = cd.width / 2;
+                    }
+
+                    cd.setText("类型：" + cd.type + " \n第" +
+                            (cd.mIndexY + 1) + "行第" + cd.mIndexX + "列" +
+                            "\nWxH: " + cd.width + "x" + cd.height);
                     cldb.mList.add(cd);
                 }
             }

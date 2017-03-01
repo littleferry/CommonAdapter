@@ -23,13 +23,9 @@ public class CellListGroupNx1 extends CellListGroupBase {
     private void initView(ViewGroup parent, int count) {
         mCount = count;
         view = new LinearLayout(parent.getContext());
-        int sw = ScreenUtils.getScreenWidth();
-        int w = sw / mCount;
-        int h = w;
 
         LinearLayout ll = (LinearLayout) view;
         ll.setOrientation(LinearLayout.HORIZONTAL);
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(w, h);
 
         for (int i = 0; i < mCount; i++) {
             CellDataBase cdb = null;
@@ -39,7 +35,6 @@ public class CellListGroupNx1 extends CellListGroupBase {
             CellGroupBase group = newGroup(parent, cdb);
             mGroupList.add(group);
             ll.addView(group.getView());
-            group.getView().setLayoutParams(lp);
         }
     }
 
@@ -54,5 +49,16 @@ public class CellListGroupNx1 extends CellListGroupBase {
             return cdb.newGroup(parent);
         }
         return new CellGroupNx1(parent);
+    }
+
+    @Override
+    protected void calculateLayout() {
+        if (data != null) {
+            for (int i = 0; i < data.mList.size(); i++) {
+                CellDataBase cdb = data.mList.get(i);
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(cdb.width, cdb.height);
+                mGroupList.get(i).getView().setLayoutParams(lp);
+            }
+        }
     }
 }
