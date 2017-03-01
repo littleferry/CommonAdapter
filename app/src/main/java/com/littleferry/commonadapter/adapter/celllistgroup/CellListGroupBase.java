@@ -30,11 +30,21 @@ public abstract class CellListGroupBase {
 
     /**
      * 获取一行最多支持多少列
+     *
      * @return
      */
     protected abstract int getXCount();
+
     protected abstract CellGroupBase newGroup(ViewGroup parent, CellDataBase cdb);
-    protected abstract void calculateLayout();
+
+    /**
+     * 重新设置每个Cell的尺寸
+     */
+    private void calculateLayout() {
+        for (int i = 0; i < mGroupList.size(); i++) {
+            mGroupList.get(i).calculateLayout();
+        }
+    }
 
     public void setData(CellListDataBase d) {
         data = d;

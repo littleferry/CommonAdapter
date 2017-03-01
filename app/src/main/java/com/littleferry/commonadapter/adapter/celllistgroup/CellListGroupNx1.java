@@ -3,7 +3,6 @@ package com.littleferry.commonadapter.adapter.celllistgroup;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.blankj.utilcode.utils.ScreenUtils;
 import com.littleferry.commonadapter.adapter.celldata.CellDataBase;
 import com.littleferry.commonadapter.adapter.cellgroup.CellGroupBase;
 import com.littleferry.commonadapter.adapter.cellgroup.CellGroupNx1;
@@ -49,16 +48,5 @@ public class CellListGroupNx1 extends CellListGroupBase {
             return cdb.newGroup(parent);
         }
         return new CellGroupNx1(parent);
-    }
-
-    @Override
-    protected void calculateLayout() {
-        if (data != null) {
-            for (int i = 0; i < data.mList.size(); i++) {
-                CellDataBase cdb = data.mList.get(i);
-                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(cdb.width, cdb.height);
-                mGroupList.get(i).getView().setLayoutParams(lp);
-            }
-        }
     }
 }

@@ -1,6 +1,8 @@
 package com.littleferry.commonadapter.adapter.cellgroup;
 
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.littleferry.commonadapter.adapter.celldata.CellDataBase;
 
@@ -21,6 +23,15 @@ public abstract class CellGroupBase {
 
     public View getView() {
         return view;
+    }
+
+    public void calculateLayout() {
+        if (data != null) {
+            ViewGroup.LayoutParams lp = view.getLayoutParams();
+            if (lp.width != data.width || lp.height != data.height) {
+                view.setLayoutParams(new LinearLayout.LayoutParams(data.width, data.height));
+            }
+        }
     }
 
     public void onClick(View v) {
