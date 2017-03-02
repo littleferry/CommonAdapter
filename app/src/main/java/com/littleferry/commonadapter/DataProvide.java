@@ -27,6 +27,10 @@ import java.util.Random;
  */
 
 public class DataProvide {
+    public static final String ImageUrl[] = {"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488424680437&di=d11ca73da0fa7f7aa376b570901a7af2&imgtype=0&src=http%3A%2F%2Fimg.club.pchome.net%2Fkdsarticle%2F2014%2F03small%2F18%2Fbfcbc9c9a0d3cc8b57c1523af28193cc_1000x750.jpg",
+    "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488424680436&di=4ccf380d4b91e2ef7d10bc33286676b2&imgtype=0&src=http%3A%2F%2Fimage89.360doc.com%2FDownloadImg%2F2015%2F10%2F1117%2F60080978_51.jpg",
+    "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488424680435&di=51541a1e3f0a3a6ab340462787268ad1&imgtype=0&src=http%3A%2F%2Fimg.sj33.cn%2Fuploads%2Fallimg%2F201503%2F7-150303234610.jpg",
+    "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488424680471&di=a7c85b5f128e5551be7c595fb51a5bc7&imgtype=0&src=http%3A%2F%2Fpic2.ooopic.com%2F12%2F13%2F96%2F42bOOOPICb2_1024.jpg"};
     public static ArrayList<CellListDataBase> getList() {
         ArrayList<CellListDataBase> list = new ArrayList<>();
         Random random = new Random();
@@ -36,7 +40,8 @@ public class DataProvide {
         for (int i = 0; i < 100 * count; i++) {
             CellListDataBase.LayoutType type;
             CellListDataBase cldb;
-            int t = (i % (random.nextInt(count) + 1)) + 1;
+            int t = (i % (count + 1)) + 1;
+            // t = CellListDataBase.LayoutType.ETypeBanner.ordinal();
             if (t == CellListDataBase.LayoutType.ETypeTitle.ordinal()) {
                 type = CellListDataBase.LayoutType.ETypeTitle;
                 cldb = new CellListDataTitle();
@@ -57,7 +62,8 @@ public class DataProvide {
                 d.mIndexY = i;
                 d.mIndexX = 0;
                 d.width = ViewGroup.LayoutParams.MATCH_PARENT;
-                d.height = sw / 2;
+                d.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+                d.imageUrl = ImageUrl[i % ImageUrl.length];
                 cldb.mList.add(d);
             } else if (t == CellListDataBase.LayoutType.EType1x1.ordinal()) {
                 type = CellListDataBase.LayoutType.EType1x1;

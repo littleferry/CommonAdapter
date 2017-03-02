@@ -14,6 +14,8 @@ import com.littleferry.commonadapter.adapter.celllistdata.CellListDataBase;
  */
 
 public class CellDataBanner extends CellData1x1 {
+    public String imageUrl;
+
     public CellDataBanner(CellListDataBase.LayoutType type) {
         super(type);
     }

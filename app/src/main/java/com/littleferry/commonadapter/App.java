@@ -3,7 +3,9 @@ package com.littleferry.commonadapter;
 import android.app.Application;
 
 import com.blankj.utilcode.utils.Utils;
-import com.facebook.drawee.backends.pipeline.Fresco;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.umeng.analytics.MobclickAgent;
 
 public class App extends Application {
@@ -13,7 +15,14 @@ public class App extends Application {
         Utils.init(getApplicationContext());
         MobclickAgent.setScenarioType(getApplicationContext(),
                 MobclickAgent.EScenarioType.E_UM_NORMAL);
-        Fresco.initialize(getApplicationContext());
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
+                .defaultDisplayImageOptions(new DisplayImageOptions.Builder()
+                        .showImageOnLoading(R.mipmap.ic_launcher)
+                        .showImageOnFail(R.mipmap.ic_launcher)
+                        .showImageForEmptyUri(R.mipmap.ic_launcher)
+                        .build())
+                .build();
+        ImageLoader.getInstance().init(config);
     }
 
     @Override

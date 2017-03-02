@@ -7,7 +7,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.littleferry.commonadapter.adapter.celldata.CellDataBanner;
 import com.littleferry.commonadapter.adapter.celldata.CellDataBase;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 /**
  * Created by luozefeng on 2016/11/15.
@@ -15,7 +17,6 @@ import com.littleferry.commonadapter.adapter.celldata.CellDataBase;
 
 public class CellGroupBanner extends CellGroup1x1 implements View.OnClickListener {
     private ImageView mImageView;
-    private TextView mTextTv;
 
     public CellGroupBanner(ViewGroup parent) {
         super(parent);
@@ -26,9 +27,9 @@ public class CellGroupBanner extends CellGroup1x1 implements View.OnClickListene
         view.setOnClickListener(this);
 
         LinearLayout ll = (LinearLayout) view;
-        mTextTv = new TextView(parent.getContext());
+        ll.setOrientation(LinearLayout.VERTICAL);
         mImageView = new ImageView(parent.getContext());
-        ll.addView(mTextTv);
+        // mImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         ll.addView(mImageView);
 
         view.setOnClickListener(this);
@@ -38,9 +39,11 @@ public class CellGroupBanner extends CellGroup1x1 implements View.OnClickListene
     public void setData(CellDataBase d) {
         data = d;
         if (d != null) {
-            view.setBackgroundColor(d.getRandomColor());
-            mTextTv.setTextColor(Color.WHITE);
-            mTextTv.setText(d.getInfo());
+            // view.setBackgroundColor(d.getRandomColor());
+
+            CellDataBanner cdb = (CellDataBanner) d;
+            ImageLoader imageLoader = ImageLoader.getInstance(); // Get singleton instance
+            imageLoader.displayImage(cdb.imageUrl, mImageView);
         } else {
             view.setVisibility(View.GONE);
         }
